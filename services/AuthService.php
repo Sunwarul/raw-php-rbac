@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../core/DatabaseConnection.php';
+require_once __DIR__ . '/../core/Logger.php';
 
 class AuthService
 {
@@ -17,10 +18,13 @@ class AuthService
         $statement->bindParam(':name', $userInfo['name']);
         $statement->bindParam(':email', $userInfo['email']);
         $statement->bindParam(':password', $userInfo['password']);
-        if($statement->execute()) {
+        try {
+            $statement->execute();
             $_SESSION['success'] = 'User registered!';
             return true;
-        } else {
+        } catch(PDOException $e) {
+            $_SESSION['error'] = $e->getMessage();
+            Logger::log($e->getMessage());
             return false;
         }
     }
