@@ -18,7 +18,10 @@ if(isset($_SESSION['errors'])) {
         echo "<div class='alert alert-danger'>$error</div>";
     }
 }
+if(isset($_SESSION['error'])) {
+    echo "<div class='alert alert-danger'>". $_SESSION['error'] ."</div>";
+}
 if(isset($_SESSION['success'])) {
-    echo "<div class='alert alert-danger'>". $_SESSION['success'] ."</div>";
+    echo "<div class='alert alert-success'>". $_SESSION['success'] ."</div>";
 }
 ?>
