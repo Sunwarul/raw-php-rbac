@@ -34,6 +34,34 @@ class AuthController
 
     public function login()
     {
-        
+        $loginInfo = [
+            'email' => $_POST['email'],
+            'password' => $_POST['password']
+        ];
+        $isValid = Validator::validate([
+            $loginInfo['email'] => 'email',
+            $loginInfo['password'] =>'string',
+        ]);
+        if($isValid) {
+            $user = $this->authService->loginUser($loginInfo);
+            if($user) {
+                $_SESSION['user'] = $user;
+                header('Location: /dashboard');
+                var_dump($user);
+            } else {
+                $_SESSION['user'] = null;
+                $_SESSION['error'] = 'Login failed. Invalid email or password';
+            }
+        }
+        return view('login');
+    }
+
+    public function logout()
+    {
+        if(isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+            $_SESSION['success'] = 'Log out successful!';
+        }
+        header('Location: /');
     }
 }
