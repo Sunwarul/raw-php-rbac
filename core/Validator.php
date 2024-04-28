@@ -23,7 +23,7 @@ class Validator
                     }
                     break;
                 case 'string':
-                    if (!is_string($value)) {
+                    if (!is_string($value) && !is_numeric($value)) {
                         $errors[$value] = $value . ' should be string.';
                     }
                     break;
