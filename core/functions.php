@@ -1,7 +1,8 @@
 <?php
 
-function view($viewName)
+function view($viewName, $data = [])
 {
+    extract($data);
     include __DIR__ . '/../views/_header.php';
     include __DIR__ . '/../views/' . $viewName . '.php';
     include __DIR__ . '/../views/_footer.php';

@@ -14,5 +14,6 @@ $routes = [
     'GET /todos/(\d+)' => 'TodoController@show',
     'POST /todos' => 'TodoController@store',
     'PUT /todos/(\d+)' => 'TodoController@update',
-    'DELETE /todos/(\d+)' => 'TodoController@destroy'
+    'DELETE /todos/(\d+)' => 'TodoController@destroy',
+    'GET /users' => 'UserController@index',
 ];
