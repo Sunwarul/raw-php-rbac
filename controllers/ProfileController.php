@@ -13,6 +13,7 @@ class ProfileController
 
     public function index()
     {
+        authorize();
         return view('profile');
     }
 

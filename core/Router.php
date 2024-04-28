@@ -16,10 +16,12 @@ class Router
                 $parts = explode('@', $controllerAction);
                 $controller = $parts[0];
                 $action = $parts[1];
-                require_once __DIR__ . "/../controllers/$controller.php";
-                $controllerInstance = new $controller();
-                $controllerInstance->{$action}();
-                // var_dump($controller, $action);
+                if (isset($controller) && isset($action)) {
+                    require_once __DIR__ . "/../controllers/$controller.php";
+                    $controllerInstance = new $controller();
+                    $controllerInstance->{$action}();
+                    break;
+                }
             }
         }
     }
