@@ -19,10 +19,10 @@ class AuthController
             'password' => $_POST['password']
         ];
 
-        $isValid = Validator::validate([
-            $userInfo['name'] => 'string',
-            $userInfo['email'] => 'email',
-            $userInfo['password'] => 'string',
+        $isValid = Validator::validate($userInfo, [
+            'name' => 'string|required',
+            'email' => 'email|required',
+            'password' => 'string|required',
         ]);
 
         if($isValid) {
@@ -38,7 +38,7 @@ class AuthController
             'email' => $_POST['email'],
             'password' => $_POST['password']
         ];
-        $isValid = Validator::validate([
+        $isValid = Validator::validate($loginInfo, [
             $loginInfo['email'] => 'email',
             $loginInfo['password'] =>'string',
         ]);
