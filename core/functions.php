@@ -32,4 +32,20 @@ function auth_user($key = null)
 function redirect($path)
 {
     header('Location: ' . $path);
+    exit;
+}
+
+function redirect_back()
+{
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+}
+
+function authorize()
+{
+    if (!isset($_SESSION['user'])) {
+        redirect('/login');
+    }
 }

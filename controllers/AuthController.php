@@ -39,8 +39,8 @@ class AuthController
             'password' => $_POST['password']
         ];
         $isValid = Validator::validate($loginInfo, [
-            $loginInfo['email'] => 'email',
-            $loginInfo['password'] =>'string',
+            'email' => 'email',
+            'password' =>'string',
         ]);
         if($isValid) {
             $user = $this->authService->loginUser($loginInfo);
@@ -62,6 +62,7 @@ class AuthController
             unset($_SESSION['user']);
             $_SESSION['success'] = 'Log out successful!';
         }
-        header('Location: /');
+        // header('Location: /');
+        redirect_back();
     }
 }
