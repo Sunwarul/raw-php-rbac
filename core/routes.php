@@ -2,10 +2,12 @@
 
 $routes = [
     'GET /' => 'HomeController@index',
+    'GET /dashboard' => 'DashboardController@index',
     'GET /login' => 'HomeController@login',
     'GET /register' => 'HomeController@register',
     'POST /register' => 'AuthController@register',
     'POST /login' => 'AuthController@login',
+    'POST /logout' => 'AuthController@logout',
     'GET /todos' => 'TodoController@index',
     'GET /todos/(\d+)' => 'TodoController@show',
     'POST /todos' => 'TodoController@store',

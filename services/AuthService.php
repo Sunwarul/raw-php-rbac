@@ -28,4 +28,19 @@ class AuthService
             return false;
         }
     }
+
+    public function loginUser($userInfo)
+    {
+        $conn = $this->db->getConnection();
+        $statement = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $statement->bindParam(':email', $userInfo['email']);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if(password_verify($userInfo['password'], $user['password'])) {
+            Logger::info("New Login");
+            Logger::log($user);
+            return $user;
+        }
+        return null;
+    }
 }
